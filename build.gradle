@@ -1,0 +1,20 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.6
+version=1.0
+archivesBaseName = 'tomcat-jndi-sessions'
+
+task "create-dirs" << {
+    sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.apache.tomcat:tomcat-catalina:7.0.42'
+    testCompile 'junit:junit:4.10'
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
